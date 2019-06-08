@@ -79,44 +79,7 @@ function main() {
 	});
 	
 
-	var doughnutChart, ctxDoughnut = document.getElementById('doughnutChart').getContext('2d')
-		,bgcolors = ['rgba(255, 99, 132)','rgba(54, 162, 235)','rgba(255, 206, 86)'];
-
-	doughnutData = {
-		datasets: [{
-			data: [10, 20, 30],
-			backgroundColor: [
-				'rgba(255, 99, 132)',
-				'rgba(54, 162, 235)',
-				'rgba(255, 206, 86)'
-			]
-		}],
-
-		labels: [
-			'Red',
-			'Yellow',
-			'Blue'
-		]
-	};
-	
-	var options = {
-		tooltips: {
-			enabled: false
-		},
-		plugins: {
-			labels: {
-				render: 'percentage',
-				fontColor: '#fff'
-			}
-		}
-	};
-	
-	doughnutChart = new Chart(ctxDoughnut, {
-		type: 'pie',
-		data: doughnutData,
-		options: options
-	});
-	
+	$('#table_id').DataTable();
 	
 	// Тестовый вызов данных о застройщиках
 	$data = {
@@ -124,7 +87,53 @@ function main() {
 	};
 
 	$.post(AJAX.url, $data, function($response) {
-		console.log($response);
+		$response=$response.substr(0,$response.length-1);
+		$response=JSON.parse($response);	
+		var doughnutChart, ctxDoughnut = document.getElementById('doughnutChart').getContext('2d')
+		,bgcolors = ['rgba(255, 99, 132)','rgba(54, 162, 235)','rgba(255, 206, 86)'];
+
+		var company = $response[0], inTime = 0, delayed = 0;
+
+		$response[0].estates.forEach(function(estate) {
+			if (estate.buildingState == "Просрочено") {
+				delayed++;
+			}
+			if (estate.buildingState == "Завершено") {
+				inTime++;
+			}	
+
+		});
+		doughnutData = {
+			datasets: [{
+				data: [delayed, inTime],
+				backgroundColor: bgcolors
+			}],
+
+			labels: [
+				'Просрочено',
+				'Завершено'
+			]
+		};
+		
+		var options = {
+			tooltips: {
+				enabled: false
+			},
+			plugins: {
+				labels: {
+					render: 'percentage',
+					fontColor: '#fff'
+				}
+			}
+		};
+		
+		doughnutChart = new Chart(ctxDoughnut, {
+			type: 'pie',
+			data: doughnutData,
+			options: options
+		});
+	
 	});
+	
 
 }
