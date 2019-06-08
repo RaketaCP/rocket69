@@ -12,6 +12,13 @@ wp_enqueue_style('chartcss','https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8
 wp_enqueue_script('main', get_template_directory_uri().'/script.js', array('jquery'));
 get_header();
 ?>
-<canvas id="myChart" width="400" height="400"></canvas>
+<div style="width:100%">
+	<div style="width:50%">
+		<canvas id="chartOne" width="400" height="400"></canvas>
+	</div>
+	<div style="width:50%">
+		<canvas id="chartTwo" width="400" height="400"></canvas>
+	</div>
+</div>
 <?php
 get_footer();

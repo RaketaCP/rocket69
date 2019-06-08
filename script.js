@@ -1,8 +1,8 @@
 $(document).ready(main);
 
 function main() {
-	var ctx = document.getElementById('myChart').getContext('2d');
-	var myChart = new Chart(ctx, {
+	var ctxOne = document.getElementById('chartOne').getContext('2d');
+	var myChartOne = new Chart(ctxOne, {
 		type: 'bar',
 		data: {
 			labels: ['ЛСР', 'ПИК Групп', 'Новострой', 'Рога и Копыта', 'Ленспецсму', 'Оранж'],
@@ -36,6 +36,16 @@ function main() {
 					}
 				}]
 			}
+		}
+	});
+	var myChartTwo, ctxTwo = document.getElementById('chartTwo').getContext('2d');
+	myChartTwo = new Chart(ctxTwo, {
+		type: 'radar',
+		data: { 
+			datasets:[{
+				data:[12, 19, 3, 5, 2, 3]
+			}],
+			labels: ['ЛСР', 'ПИК Групп', 'Новострой', 'Рога и Копыта', 'Ленспецсму', 'Оранж']
 		}
 	});
 }
