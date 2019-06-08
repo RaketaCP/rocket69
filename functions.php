@@ -15,6 +15,7 @@ if (!function_exists('add_scripts')) {
 		wp_enqueue_script('jquery', '//code.jquery.com/jquery-3.4.1.min.js','','',true);
 		wp_enqueue_script('chartjs', '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js','','',true);
 		wp_enqueue_script('datatables', '//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css','','',true);
+		wp_enqueue_script('bootstrapjs', '//stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js','','',true);
 		wp_enqueue_script('main', get_template_directory_uri() . '/script.js', array('jquery'),'',true);
 	}
 }
@@ -26,6 +27,8 @@ if (!function_exists('add_styles')) {
 	    if(is_admin()) return false;
 		wp_enqueue_style('chartcss', '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.css');
 		wp_enqueue_style('datatables', '//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js');
+		wp_enqueue_style('poppercss', '//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js');
+		wp_enqueue_style('bootstrapcss', '//stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css');
 	}
 }
 
