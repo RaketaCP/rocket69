@@ -48,4 +48,14 @@ function main() {
 			labels: ['ЛСР', 'ПИК Групп', 'Новострой', 'Рога и Копыта', 'Ленспецсму', 'Оранж']
 		}
 	});
+	
+	
+	// Тестовый вызов данных о застройщиках
+	$data = {
+		action: 'get_companies_data'
+	};
+
+	$.post(AJAX.url, $data, function($response) {
+		console.log($response);
+	});
 }
