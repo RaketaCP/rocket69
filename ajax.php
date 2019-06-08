@@ -52,7 +52,7 @@ function get_companies_data() {
 
 	wp_reset_query();
 	
-	echo json_encode($ret);
+	echo json_encode($ret, JSON_UNESCAPED_UNICODE);
 	
 }
 
