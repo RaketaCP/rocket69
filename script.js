@@ -78,11 +78,10 @@ function main() {
 		}
 	});
 	
+
 	var doughnutChart, ctxDoughnut = document.getElementById('doughnutChart').getContext('2d')
 		,bgcolors = ['rgba(255, 99, 132)','rgba(54, 162, 235)','rgba(255, 206, 86)'];
-	/*var a = $.get("AJAX.url", function (result) {
-			console.log(result);
-	})*/
+
 	doughnutData = {
 		datasets: [{
 			data: [10, 20, 30],
@@ -118,5 +117,14 @@ function main() {
 		options: options
 	});
 	
+	
+	// Тестовый вызов данных о застройщиках
+	$data = {
+		action: 'get_companies_data'
+	};
+
+	$.post(AJAX.url, $data, function($response) {
+		console.log($response);
+	});
 
 }
