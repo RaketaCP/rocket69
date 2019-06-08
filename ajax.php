@@ -27,7 +27,7 @@ function get_companies_data() {
 			foreach($posts as $post) {
 				setup_postdata($post);
 				
-				$estates = array(
+				$estates[] = array(
 					'buildingStartDate'				=> get_field('building_start_date', $post->ID),
 					'buildingEstimatedFinishDate'	=> get_field('building_estimated_finish_date', $post->ID),
 					'buildingRealFinishDate'		=> get_field('building_real_finish_date', $post->ID),
