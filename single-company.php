@@ -43,9 +43,21 @@ get_header();
 				</div>
 			</div>
 		</div>
+		<div class="row">
+				<div class="col-5 ml-3 facet-filter">
+					<canvas id="doughnutChart"  height="250"></canvas>
+				</div>
+				<div class=" col-6  ml-5 facet-filter">
+					<canvas id="barChart" height="250"></canvas>
+				</div>
+		</div>
 	</div>
 </section>
-
+<script>
+jQuery(document).ready(function($) {
+	main($);
+});
+</script>
 <?php
 get_footer();
 ?>
