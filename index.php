@@ -12,13 +12,39 @@ get_header();
 		<h3 class="m-auto">Статистика по новостройкам г. Санкт-Петербург</h3>
 	</div>
 	<div class="row">
-		<div class="col-5  facet-filter">
-			<canvas id="doughnutChart"  height="250"></canvas>
+		<div class="col-md-12">
+			<div class="facet-filter">
+				<div class="title">Поиск по параметрам:</div>
+				<div class="facet">
+					<?php echo do_shortcode('[facetwp facet="categories"]'); ?>
+				</div>
+				<div class="facet">
+					<label>Регион:</label>
+					<?php echo do_shortcode('[facetwp facet="region"]'); ?>
+				</div>
+				<div class="facet">
+					<label>Город:</label>
+					<?php echo do_shortcode('[facetwp facet="city"]'); ?>
+				</div>
+				<div class="facet-reset clearfix">
+					<button onclick="FWP.reset()">Сбросить</button>
+				</div>
+			</div>
 		</div>
-		<div class=" col-6 ml-4 facet-filter">
-			<canvas id="barChart" height="250"></canvas>
+	</div>
+
+	<div class="row">
+		<div class="col-6">
+			<div class="inner">
+				<canvas id="doughnutChart"  height="200"></canvas>
+			</div>
 		</div>
-		<div class="col-2 d-none">
+		<div class="col-6">
+			<div class="inner">
+				<canvas id="barChart" height="200"></canvas>
+			</div>
+		</div>
+		<div class="d-none">
 			<span>Регион:</span>
 			<select id="regionsSelect" class="js-regions-select">
 				<option value="0" selected>г. Санкт-Петербург</option>
@@ -28,6 +54,47 @@ get_header();
 		</div>
 	</div>
 	<div class="row">
+		<div class="col-md-12">
+			<?php
+				$args = array(
+					'post_type' => 'company',
+					'posts_per_page' => 20,
+					'facetwp' => true
+				);
+				$query = new WP_Query( $args );
+			?>
+			<div class="facetwp-template">
+				<table id="companies-table" class="data-table">
+					<thead>
+						<tr>
+							<th>Название компании</th>
+							<th>Сдано проектов</th>
+							<th>Строится</th>
+							<th>Заморожено</th>
+							<th>Рейтинг</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php while($query->have_posts()) {
+							$query->the_post(); ?>
+							<tr>
+								<td>
+									<a href="<?php echo get_permalink(); ?>">
+										<span class="table-logo" style="background: url(<?php the_field('company_logo'); ?>); background-size: contain; background-repeat: no-repeat; background-position: 50% 50%;"></span>
+											
+										<span><?php the_title(); ?></span>
+									</a>
+								</td>
+								<td><?php the_field('company_finished_projects'); ?></td>
+								<td><?php the_field('company_current_projects'); ?></td>
+								<td><?php the_field('company_frozen_projects'); ?></td>
+								<td><?php the_field('company_rating'); ?></td>
+							</tr>
+						<?php } ?>
+					</tbody>
+				</table>
+			</div>
+		</div>
 	</div>
 	<!---
 		<div class="col-6">

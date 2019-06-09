@@ -110,3 +110,8 @@ function init_post_types_search($query) {
     
     return $query; 
 }
+
+
+add_filter( 'facetwp_is_main_query', function( $bool, $query ) {
+    return ( true === $query->get( 'facetwp' ) ) ? true : $bool;
+}, 10, 2 );
