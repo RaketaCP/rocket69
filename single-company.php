@@ -44,12 +44,82 @@ get_header();
 			</div>
 		</div>
 		<div class="row">
-				<div class="col-5 ml-3 facet-filter">
-					<canvas id="doughnutChart"  height="250"></canvas>
+				<div class="col-6">
+					<div class="inner">
+						<canvas id="doughnutChart"  height="250"></canvas>
+					</div>
 				</div>
-				<div class=" col-6  ml-5 facet-filter">
-					<canvas id="barChart" height="250"></canvas>
+				<div class=" col-6">
+					<div class="inner">
+						<canvas id="barChart" height="250"></canvas>
+					</div>
 				</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-md-12">
+				<div class="facet-filter">
+					<div class="title">Поиск по параметрам:</div>
+					<div class="facet">
+						<?php echo do_shortcode('[facetwp facet="building_name"]'); ?>
+					</div>
+					<div class="facet">
+						<label>Регион:</label>
+						<?php echo do_shortcode('[facetwp facet="building_region"]'); ?>
+					</div>
+					<div class="facet">
+						<label>Город:</label>
+						<?php echo do_shortcode('[facetwp facet="building_city"]'); ?>
+					</div>
+					<div class="facet-reset clearfix">
+						<button onclick="FWP.reset()">Сбросить</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<?php
+					$args = array(
+						'post_type' => 'estate',
+						'posts_per_page' => 20,
+						'facetwp' => true
+					);
+					$query = new WP_Query($args);
+				?>
+				<div class="facetwp-template">
+					<table id="companies-table" class="data-table">
+						<thead>
+							<tr>
+								<th>Название компании</th>
+								<th>Регион</th>
+								<th>Адрес</th>
+								<th>Начало строительства</th>
+								<th>Заявленная дата окончания</th>
+								<th>Статус</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php while($query->have_posts()) {
+								$query->the_post(); ?>
+								<tr>
+									<td>
+										<a href="<?php echo get_permalink(); ?>">
+											<span><?php the_title(); ?></span>
+										</a>
+									</td>
+									<td><?php the_field('building_region'); ?></td>
+									<td><?php the_field('building_city'); ?>, <?php the_field('building_street'); ?>, <?php the_field('building_house'); ?></td>
+									<td><?php the_field('building_start_date'); ?></td>
+									<td><?php the_field('building_estimated_finish_date'); ?></td>
+									<td><?php the_field('building_state'); ?></td>
+								</tr>
+							<?php } ?>
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
 	</div>
 </section>
