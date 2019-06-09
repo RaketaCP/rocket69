@@ -289,6 +289,15 @@ table.dataTable thead .sorting:before, table.dataTable thead .sorting:after, tab
 	margin-top: 10px;
 	font-weight: bold;
 }
+.col-6 {
+	margin-bottom: 15px;
+	margin-top: 20px;
+}
+.col-6 .inner {
+	background: white;
+	border: 1px solid #ddd;
+	padding: 30px
+}
 
 
 
