@@ -6,7 +6,9 @@
  */
 get_header();
 ?>
-<div class="container">
+
+
+	<!--
 	<div class="row">
 		<div class="col-6">
 			<canvas id="doughnutChart" width="400" height="400"></canvas>
@@ -38,6 +40,7 @@ get_header();
 	<div style="width:50%">
 		<canvas id="radarChart" width="400" height="400"></canvas>
 	</div>
+	-->
 
 </div>
 <?php

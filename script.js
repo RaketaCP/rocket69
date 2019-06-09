@@ -25,6 +25,29 @@ right:c,top:b,bottom:e});return!0};f.prototype.measureLabel=function(a){if("obje
 {}})},afterDatasetsDraw:function(a){k[a.config.type]&&a._labels.forEach(function(a){a.render()})}})}})();
 
 
+(function($) {
+    $(document).on('facetwp-loaded', function() {
+        if($('#companies-table').length) {
+			$('#companies-table').DataTable().destroy();
+			$('#companies-table').DataTable({
+				"pageLength": 20,
+				'bFilter': false,
+				"bInfo" : false,
+				"lengthChange": false,
+				language: {
+					"sZeroRecords": "Ничего не найдено - извините",
+					"oPaginate": {
+						"sFirst": "Первая",
+						"sLast":"Посл.",
+						"sNext":"→",
+						"sPrevious":"←"			
+					} 
+				},
+			});
+		}
+     });
+})(jQuery);
+/*
 $(document).ready(main);
 
 function main() {
@@ -137,3 +160,4 @@ function main() {
 	
 
 }
+*/
