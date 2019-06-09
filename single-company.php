@@ -115,7 +115,7 @@ get_header();
 									<td><?php the_field('building_estimated_finish_date'); ?></td>
 									<td><?php the_field('building_state'); ?></td>
 								</tr>
-							<?php } ?>
+							<?php } WP_reset_query();?>
 						</tbody>
 					</table>
 				</div>
