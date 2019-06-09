@@ -7,14 +7,13 @@
 get_header();
 ?>
 
-
 <div class="conatainer">
 	<div class="row">
-		<div class="offset-1 col-5">
-			<canvas id="doughnutChart"  height="300"></canvas>
+		<div class="offset-1 col-4">
+			<canvas id="doughnutChart"  height="200"></canvas>
 		</div>
-		<div class="offset-1 col-5">
-			<canvas id="barChart" height="300"></canvas>
+		<div class="offset-1 col-4">
+			<canvas id="barChart" height="200"></canvas>
 		</div>
 		<div class="col-2 d-none">
 			<span>Регион:</span>
