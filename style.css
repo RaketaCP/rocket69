@@ -238,9 +238,57 @@ table.dataTable thead .sorting:before, table.dataTable thead .sorting:after, tab
 	transition: opacity 0.3s ease-in-out;
 }
 
-
-
-
+.archive-company-page h1 {
+	font-size: 30px;
+	margin: 30px 0 0;
+}
+.company-page .block {
+	background: white;
+	border: 1px solid #ddd;
+	margin: 30px 0 20px;
+	padding: 40px 30px;
+}
+.block img {
+	height: 70px;
+}
+.company-page .company-name {
+	font-size: 24px;
+	margin: 0 20px;
+	font-weight: bold;
+}
+.company-meta {
+	display: table;
+	width: 100%;
+}
+.company-meta .item {
+	display: table-cell;
+	width: 25%;
+	text-align: center;
+	vertical-align: middle;
+}
+.company-meta .item:nth-child(1) {
+	border-right: 1px solid #ddd;
+}
+.company-meta .item:nth-child(2) {
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+}
+.company-meta .item:nth-child(3) {
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+}
+.company-meta .item:nth-child(4) {
+	border-left: 1px solid #ddd;
+}
+.company-meta .item .title {
+	font-size: 14px;
+	line-height: 18px;
+}
+.company-meta .item .value {
+	font-size: 14px;
+	margin-top: 10px;
+	font-weight: bold;
+}
 
 
 

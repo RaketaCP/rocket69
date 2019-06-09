@@ -3,6 +3,7 @@ get_header(); ?>
 
 <section class="archive-company-page">
 	<div class="container">
+		<h1 class="">Застройщики</h1>
 		<div class="row">
 			<div class="col-md-12">
 				<div class="facet-filter">
