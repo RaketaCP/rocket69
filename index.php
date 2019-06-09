@@ -7,7 +7,7 @@
 get_header();
 ?>
 
-<div class="conatainer">
+<div class="container">
 	<div class="row">
 		<div class="offset-1 col-4">
 			<canvas id="doughnutChart"  height="200"></canvas>
