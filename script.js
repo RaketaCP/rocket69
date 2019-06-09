@@ -49,7 +49,7 @@ right:c,top:b,bottom:e});return!0};f.prototype.measureLabel=function(a){if("obje
 })(jQuery);
 
 
-function main($) {
+function main($, val) {
 
 	
 	if (document.getElementById('radarChart')) {
@@ -108,20 +108,28 @@ function main($) {
 		action: 'get_companies_data'
 	};
 	
-	renderChart(0);
+	renderChart(val);
 	function renderChart(val) {
 		$.post(AJAX.url, $data, function($response) {
 			$response=$response.substr(0,$response.length-1);
 			$response=JSON.parse($response);
-			//console.log($response)
+			console.log($response)
 			if (document.getElementById('doughnutChart')) {
 				var doughnutChart, ctxDoughnut = document.getElementById('doughnutChart').getContext('2d')
 				,bgcolors = ['rgb(204,51,0)','rgb(51,204,51)','rgba(255, 206, 86)'];
 				
 				if (val == null) val = 0;
+				if (typeof val == "string") {
+					$response.forEach(function(company, index) {
+						if (company.companyName == val) {
+							val = index;
+							return;
+						}
+					});
+				}
 				var company = $response[val], chartData;
 				chartData = byCompany($response[val]);
-
+			
 				doughnutData = {
 					datasets: [{
 						data: [30, 70],

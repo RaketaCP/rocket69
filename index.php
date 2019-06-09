@@ -61,7 +61,7 @@ get_header();
 </div>
 <script>
 jQuery(document).ready(function($) {
-	main($);
+	main($, 0);
 });
 </script>
 <?php

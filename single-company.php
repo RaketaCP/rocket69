@@ -55,7 +55,7 @@ get_header();
 </section>
 <script>
 jQuery(document).ready(function($) {
-	main($);
+	main($,"<?php the_field('company_name'); ?>");
 });
 </script>
 <?php
