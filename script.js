@@ -108,18 +108,15 @@ function main($) {
 		action: 'get_companies_data'
 	};
 	
-	$('.js-regions-select').change(function() {
-		renderChart($(this).val());
-	});
-	$('.js-regions-select').change();
+	renderChart(0);
 	function renderChart(val) {
 		$.post(AJAX.url, $data, function($response) {
 			$response=$response.substr(0,$response.length-1);
 			$response=JSON.parse($response);
-			console.log($response)
+			//console.log($response)
 			if (document.getElementById('doughnutChart')) {
 				var doughnutChart, ctxDoughnut = document.getElementById('doughnutChart').getContext('2d')
-				,bgcolors = ['rgba(92, 92, 92)','rgba(54, 162, 235)','rgba(255, 206, 86)'];
+				,bgcolors = ['rgb(204,51,0)','rgb(51,204,51)','rgba(255, 206, 86)'];
 				
 				if (val == null) val = 0;
 				var company = $response[val], chartData;
@@ -162,25 +159,13 @@ function main($) {
 						datasets: [{
 							label: 'Всего построек',
 							data: [12, 19, 3, 5, 2],
-							backgroundColor: [
-								'rgba(54, 162, 235, .4)',
-								'rgba(54, 162, 235, .4)',
-								'rgba(54, 162, 235, .4)',
-								'rgba(54, 162, 235, .4)',
-								'rgba(54, 162, 235, .4)',
-								'rgba(54, 162, 235, .4)'
-							]
+							datalabels: {color:"rgb(255,255,255)"},
+							backgroundColor: 'rgb(51,204,51)'
 						},
 						{
 							label: "Просрочено",
 							data: [1,2,3,4,5],
-							backgroundColor: [
-								'rgba(92, 92, 92, 0.3)',
-								'rgba(92, 92, 92, 0.3)',
-								'rgba(92, 92, 92, 0.3)',
-								'rgba(92, 92, 92, 0.3)',
-								'rgba(92, 92, 92, 0.3)',
-							],
+							backgroundColor: 'rgb(204,51,0)',
 						}]
 					},
 					options: {

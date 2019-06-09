@@ -9,11 +9,11 @@ get_header();
 
 <div class="container">
 	<div class="row">
-		<div class="offset-1 col-4">
-			<canvas id="doughnutChart"  height="200"></canvas>
+		<div class="col-5  facet-filter">
+			<canvas id="doughnutChart"  height="250"></canvas>
 		</div>
-		<div class="offset-1 col-4">
-			<canvas id="barChart" height="200"></canvas>
+		<div class=" col-6 ml-4 facet-filter">
+			<canvas id="barChart" height="250"></canvas>
 		</div>
 		<div class="col-2 d-none">
 			<span>Регион:</span>
