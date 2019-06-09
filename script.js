@@ -48,49 +48,9 @@ right:c,top:b,bottom:e});return!0};f.prototype.measureLabel=function(a){if("obje
      });
 })(jQuery);
 
-$(document).ready(main);
 
-function main() {
+function main($) {
 
-	if (document.getElementById('barChart')) {
-		var ctxBar = document.getElementById('barChart').getContext('2d');
-		var barChart = new Chart(ctxBar, {
-			type: 'bar',
-			data: {
-				labels: ['ЛСР', 'ПИК Групп', 'Новострой', 'Рога и Копыта', 'Ленспецсму', 'Оранж'],
-				datasets: [{
-					label: '# of Votes',
-					data: [12, 19, 3, 5, 2, 3],
-					backgroundColor: [
-						'rgba(255, 99, 132, 0.2)',
-						'rgba(54, 162, 235, 0.2)',
-						'rgba(255, 206, 86, 0.2)',
-						'rgba(75, 192, 192, 0.2)',
-						'rgba(153, 102, 255, 0.2)',
-						'rgba(255, 159, 64, 0.2)'
-					],
-					borderColor: [
-						'rgba(255, 99, 132, 1)',
-						'rgba(54, 162, 235, 1)',
-						'rgba(255, 206, 86, 1)',
-						'rgba(75, 192, 192, 1)',
-						'rgba(153, 102, 255, 1)',
-						'rgba(255, 159, 64, 1)'
-					],
-					borderWidth: 2
-				}]
-			},
-			options: {
-				scales: {
-					yAxes: [{
-						ticks: {
-							beginAtZero: true
-						}
-					}]
-				}
-			}
-		});
-	}
 	
 	if (document.getElementById('radarChart')) {
 		var radarChart, ctxRadar = document.getElementById('radarChart').getContext('2d');
@@ -105,6 +65,43 @@ function main() {
 		});
 	}
 	
+	function byCompany(company) {
+		var inTime = 0, delayed = 0
+		company.estates.forEach(function(estate) {
+			if (estate.buildingState == "Просрочено") {
+				delayed++;
+			}
+			if (estate.buildingState == "Завершено") {
+				inTime++;
+			}
+		});
+		return {labels: ["Просрочено", "Завершено"], data: [delayed, inTime]};
+	}
+	
+	function byRegion($response) {
+		var regions = {};
+		$response.forEach(function(company) {
+			company.estates.forEach(function(estate) {
+				if (regions[estate.buildingRegion] == null) {regions[estate.buildingRegion] = 1;}
+				else {regions[estate.buildingRegion] = regions[estate.buildingRegion]+1}
+			});
+		});
+		return {labels:Object.keys(regions), data: Object.values(regions)};
+	}
+	
+	function byYear($response) {
+		var years = {};
+		$response.forEach(function(company) {
+			company.estates.forEach(function(estate) {
+				if (estate.buildingEstimatedFinishDate && buildingState == "Просрочено") {
+					if (years[buildingEstimatedFinishDate] == null) {years[buildingEstimatedFinishDate] = 1;}
+					else {years[buildingEstimatedFinishDate] = years[buildingEstimatedFinishDate]+1;}
+				}
+				if (years[estate.buildingRegion] == null) {years[estate.buildingRegion] = 1;}
+				else {years[estate.buildingRegion] = years[estate.buildingRegion]+1}
+			});
+		});
+	}
 	
 	// Тестовый вызов данных о застройщиках
 	$data = {
@@ -119,32 +116,22 @@ function main() {
 		$.post(AJAX.url, $data, function($response) {
 			$response=$response.substr(0,$response.length-1);
 			$response=JSON.parse($response);
+			console.log($response)
 			if (document.getElementById('doughnutChart')) {
 				var doughnutChart, ctxDoughnut = document.getElementById('doughnutChart').getContext('2d')
-				,bgcolors = ['rgba(255, 99, 132)','rgba(54, 162, 235)','rgba(255, 206, 86)'];
+				,bgcolors = ['rgba(92, 92, 92)','rgba(54, 162, 235)','rgba(255, 206, 86)'];
 				
 				if (val == null) val = 0;
-				var company = $response[val], inTime = 0, delayed = 0;
+				var company = $response[val], chartData;
+				chartData = byCompany($response[val]);
 
-				company.estates.forEach(function(estate) {
-					if (estate.buildingState == "Просрочено") {
-						delayed++;
-					}
-					if (estate.buildingState == "Завершено") {
-						inTime++;
-					}	
-
-				});
 				doughnutData = {
 					datasets: [{
-						data: [delayed, inTime],
+						data: [30, 70],
 						backgroundColor: bgcolors
 					}],
 
-					labels: [
-						'Просрочено',
-						'Завершено'
-					]
+					labels: ["Просрочено", "Завершено"]
 				};
 				
 				var options = {
@@ -163,6 +150,52 @@ function main() {
 					type: 'pie',
 					data: doughnutData,
 					options: options
+				});
+			}
+					
+			if (document.getElementById('barChart')) {
+				var ctxBar = document.getElementById('barChart').getContext('2d');
+				var barChart = new Chart(ctxBar, {
+					type: 'bar',
+					data: {
+						labels: ['2014', '2015', '2016', '2017', '2018'],
+						datasets: [{
+							label: 'Всего построек',
+							data: [12, 19, 3, 5, 2],
+							backgroundColor: [
+								'rgba(54, 162, 235, .4)',
+								'rgba(54, 162, 235, .4)',
+								'rgba(54, 162, 235, .4)',
+								'rgba(54, 162, 235, .4)',
+								'rgba(54, 162, 235, .4)',
+								'rgba(54, 162, 235, .4)'
+							]
+						},
+						{
+							label: "Просрочено",
+							data: [1,2,3,4,5],
+							backgroundColor: [
+								'rgba(92, 92, 92, 0.3)',
+								'rgba(92, 92, 92, 0.3)',
+								'rgba(92, 92, 92, 0.3)',
+								'rgba(92, 92, 92, 0.3)',
+								'rgba(92, 92, 92, 0.3)',
+							],
+						}]
+					},
+					options: {
+						scales: {
+							yAxes: [{
+								ticks: {
+									beginAtZero: true
+								},
+								stacked: true
+							}],
+							xAxes: [{
+								stacked: true
+							}]
+						}
+					}
 				});
 			}
 		
