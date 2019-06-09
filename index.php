@@ -8,15 +8,29 @@ get_header();
 ?>
 
 
-	<!--
+<div class="conatainer">
 	<div class="row">
-		<div class="col-6">
-			<canvas id="doughnutChart" width="400" height="400"></canvas>
+		<div class="offset-1 col-5">
+			<canvas id="doughnutChart"  height="300"></canvas>
 		</div>
+		<div class="offset-1 col-5">
+			<canvas id="barChart" height="300"></canvas>
+		</div>
+		<div class="col-2 d-none">
+			<span>Регион:</span>
+			<select id="regionsSelect" class="js-regions-select">
+				<option value="0" selected>г. Санкт-Петербург</option>
+				<option value="2">г. Москва</option>
+				<option value="3">Республика Коми</option>
+			</select>
+		</div>
+	</div>
+	<div class="row">
+	</div>
+	<!---
 		<div class="col-6">
 			<canvas id="barChart" width="400" height="400"></canvas>
 		</div>
-	</div>
 	<table id="table_id" class="display">
     <thead>
         <tr>
@@ -40,8 +54,13 @@ get_header();
 	<div style="width:50%">
 		<canvas id="radarChart" width="400" height="400"></canvas>
 	</div>
-	-->
+	--->
 
 </div>
+<script>
+jQuery(document).ready(function($) {
+	main($);
+});
+</script>
 <?php
 get_footer();
