@@ -8,15 +8,15 @@ get_header(); ?>
 				<div class="facet-filter">
 					<div class="title">Поиск по параметрам:</div>
 					<div class="facet">
-						<?php echo do_shortcode('[facetwp facet="categories"]'); ?>
+						<?php echo do_shortcode('[facetwp facet="building_name"]'); ?>
 					</div>
 					<div class="facet">
 						<label>Регион:</label>
-						<?php echo do_shortcode('[facetwp facet="region"]'); ?>
+						<?php echo do_shortcode('[facetwp facet="building_region"]'); ?>
 					</div>
 					<div class="facet">
 						<label>Город:</label>
-						<?php echo do_shortcode('[facetwp facet="city"]'); ?>
+						<?php echo do_shortcode('[facetwp facet="building_city"]'); ?>
 					</div>
 					<div class="facet-reset clearfix">
 						<button onclick="FWP.reset()">Сбросить</button>
@@ -31,11 +31,10 @@ get_header(); ?>
 					<table id="companies-table" class="data-table">
 						<thead>
 							<tr>
-								<th>Название компании</th>
-								<th>Сдано проектов</th>
-								<th>Строится</th>
-								<th>Заморожено</th>
-								<th>Рейтинг</th>
+								<th>Название объекта</th>
+								<th>Дата начала строительства</th>
+								<th>Дата окончания строительства</th>
+								<th>Статус</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -43,16 +42,11 @@ get_header(); ?>
 								the_post(); ?>
 								<tr>
 									<td>
-										<a href="<?php echo get_permalink(); ?>">
-											<span class="table-logo" style="background: url(<?php the_field('company_logo'); ?>); background-size: contain; background-repeat: no-repeat; background-position: 50% 50%;"></span>
-											
-											<span><?php the_title(); ?></span>
-										</a>
+										<span><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></span>
 									</td>
-									<td><?php the_field('company_finished_projects'); ?></td>
-									<td><?php the_field('company_current_projects'); ?></td>
-									<td><?php the_field('company_frozen_projects'); ?></td>
-									<td><?php the_field('company_rating'); ?></td>
+									<td><?php the_field('building_start_date'); ?></td>
+									<td><?php the_field('building_real_finish_date'); ?></td>
+									<td><?php the_field('building_state'); ?></td>
 								</tr>
 							<?php } ?>
 						</tbody>
