@@ -158,13 +158,12 @@ function main($) {
 						labels: ['2014', '2015', '2016', '2017', '2018'],
 						datasets: [{
 							label: 'Всего построек',
-							data: [12, 19, 3, 5, 2],
-							datalabels: {color:"rgb(255,255,255)"},
+							data: [10, 19, 3, 5, 2],
 							backgroundColor: 'rgb(51,204,51)'
 						},
 						{
 							label: "Просрочено",
-							data: [1,2,3,4,5],
+							data: [2,2,3,4,5],
 							backgroundColor: 'rgb(204,51,0)',
 						}]
 					},

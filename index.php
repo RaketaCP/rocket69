@@ -9,6 +9,9 @@ get_header();
 
 <div class="container">
 	<div class="row">
+		<h3 class="m-auto">Статистика по новостройкам г. Санкт-Петербург</h3>
+	</div>
+	<div class="row">
 		<div class="col-5  facet-filter">
 			<canvas id="doughnutChart"  height="250"></canvas>
 		</div>
