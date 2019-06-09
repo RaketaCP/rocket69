@@ -113,7 +113,7 @@ function main($, val) {
 		$.post(AJAX.url, $data, function($response) {
 			$response=$response.substr(0,$response.length-1);
 			$response=JSON.parse($response);
-			console.log($response)
+			var chartData = null;
 			if (document.getElementById('doughnutChart')) {
 				var doughnutChart, ctxDoughnut = document.getElementById('doughnutChart').getContext('2d')
 				,bgcolors = ['rgb(204,51,0)','rgb(51,204,51)','rgba(255, 206, 86)'];
@@ -126,17 +126,23 @@ function main($, val) {
 							return;
 						}
 					});
+				} else {
+					chartData = {data:[30, 70], labels: ["Просрочено", "Завершено"]}
 				}
-				var company = $response[val], chartData;
-				chartData = byCompany($response[val]);
-			
+				
+				var company = $response[val];
+				if (chartData == null) {
+					chartData = byCompany($response[val]);
+				}
+				//chartData = {data:[30, 70], labels: ["Просрочено", "Завершено"]}
+				console.log(chartData);
 				doughnutData = {
 					datasets: [{
-						data: [30, 70],
+						data: chartData.data,
 						backgroundColor: bgcolors
 					}],
 
-					labels: ["Просрочено", "Завершено"]
+					labels: chartData.labels
 				};
 				
 				var options = {
